@@ -2,6 +2,7 @@ package com.example.adapter.rest.resource;
 
 
 import com.example.adapter.rest.dto.QuoteDTO;
+import com.example.adapter.rest.restclient.AuthorClientService;
 import com.example.domain.QuoteService;
 import com.example.domain.entity.Quote;
 import com.example.domain.port.QuoteRepository;
@@ -18,9 +19,12 @@ public class QuoteResource {
     private final QuoteRepository quoteRepository;
     private final QuoteService quoteService;
 
-    public QuoteResource(QuoteRepository quoteRepository) {
+    private final AuthorClientService authorClientService;
+
+    public QuoteResource(QuoteRepository quoteRepository, AuthorClientService authorClientService) {
         this.quoteRepository = quoteRepository;
         quoteService = new QuoteService(quoteRepository);
+        this.authorClientService = authorClientService;
     }
 
     @POST
@@ -37,6 +41,8 @@ public class QuoteResource {
     @Path("/{id}")
     public QuoteDTO get(@PathParam("id") Long id) {
         Quote quote = quoteService.findById(id);
-        return  QuoteDTO.builder().id(quote.getId()).authorId(quote.getAuthorId()).content(quote.getContent()).build();
+        return  QuoteDTO.builder().id(quote.getId()).authorDTO(
+            authorClientService.get(quote.getAuthorId())
+        ).content(quote.getContent()).build();
     }
 }

@@ -13,4 +13,6 @@ public class QuoteDTO {
     private String content;
 
     private Long authorId;
+
+    private AuthorDTO authorDTO;
 }
