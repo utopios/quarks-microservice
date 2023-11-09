@@ -6,10 +6,12 @@ import com.example.domain.QuoteService;
 import com.example.domain.entity.Quote;
 import com.example.domain.port.QuoteRepository;
 import jakarta.transaction.Transactional;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
 
 @Path("/api/v1/quote")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class QuoteResource {
 
 
@@ -29,5 +31,12 @@ public class QuoteResource {
                 .content(quoteCreated.getContent())
                 .authorId(quote.getAuthorId())
                 .build();
+    }
+
+    @GET
+    @Path("/{id}")
+    public QuoteDTO get(@PathParam("id") Long id) {
+        Quote quote = quoteService.findById(id);
+        return  QuoteDTO.builder().authorId(quote.getAuthorId()).content(quote.getContent()).build();
     }
 }
