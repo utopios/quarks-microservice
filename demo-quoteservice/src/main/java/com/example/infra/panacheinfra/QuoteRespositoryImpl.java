@@ -18,8 +18,10 @@ public class QuoteRespositoryImpl implements QuoteRepository {
 
     @Override
     public void save(Quote quote) {
-        quoteEntityRepository.persist(QuoteEntity.builder().authorId(quote.getAuthorId())
-                .content(quote.getContent()).build());
+        QuoteEntity quoteEntity = QuoteEntity.builder().authorId(quote.getAuthorId())
+                .content(quote.getContent()).build();
+        quoteEntityRepository.persist(quoteEntity);
+        quote.setId(quoteEntity.getId());
     }
 
     @Override

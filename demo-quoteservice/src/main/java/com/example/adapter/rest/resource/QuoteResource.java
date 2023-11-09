@@ -26,7 +26,7 @@ public class QuoteResource {
     @POST
     @Transactional
     public QuoteDTO post(QuoteDTO quote) {
-        Quote quoteCreated = quoteService.save(quote.getContent(), quote.getId());
+        Quote quoteCreated = quoteService.save(quote.getContent(), quote.getAuthorId());
         return QuoteDTO.builder().id(quoteCreated.getId())
                 .content(quoteCreated.getContent())
                 .authorId(quote.getAuthorId())
@@ -37,6 +37,6 @@ public class QuoteResource {
     @Path("/{id}")
     public QuoteDTO get(@PathParam("id") Long id) {
         Quote quote = quoteService.findById(id);
-        return  QuoteDTO.builder().authorId(quote.getAuthorId()).content(quote.getContent()).build();
+        return  QuoteDTO.builder().id(quote.getId()).authorId(quote.getAuthorId()).content(quote.getContent()).build();
     }
 }
