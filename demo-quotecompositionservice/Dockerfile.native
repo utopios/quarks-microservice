@@ -8,7 +8,7 @@ USER quarkus
 RUN ./mvnw -B org.apache.maven.plugins:maven-dependency-plugin:3.1.2:go-offline
 COPY --chown=quarkus:quarkus ./src /build/src
 
-RUN ./mvnw package -DskipTests -Dnative -Dquarkus.profile=dev
+RUN ./mvnw package -DskipTests -Dnative
 
 
 #Stage 2 => run
