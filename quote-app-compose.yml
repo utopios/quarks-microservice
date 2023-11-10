@@ -4,7 +4,7 @@ services:
   authoremicroservice:
     build: 
       context: ./demo-authormicroservice
-      dockerile: Dockerfile.native
+      dockerfile: Dockerfile.native
     container_name: authorservice
     ports:
       - "8081:8081"
@@ -13,7 +13,7 @@ services:
   quotemicroservice:
     build: 
       context: ./demo-quoteservice
-      dockerile: Dockerfile.native
+      dockerfile: Dockerfile.native
     container_name: quoteservice
     ports:
       - "8082:8080"
@@ -26,7 +26,7 @@ services:
   apicompositionmicroservice:
     build: 
       context: ./demo-quotecompositionservice
-      dockerile: Dockerfile.native
+      dockerfile: Dockerfile.native
     container_name: quotecompositionservice
     ports:
       - "8080:8082"

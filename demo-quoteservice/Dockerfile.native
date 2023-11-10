@@ -1,14 +1,16 @@
 # Stage 1 => build
 FROM quay.io/quarkus/ubi-quarkus-mandrel-builder-image:jdk-17 AS build
-WORKDIR /build
-COPY --chown=quarkus:quarkus .mvn /build/.mvn
-COPY --chown=quarkus:quarkus mvnw /build/mvnw
-COPY --chown=quarkus:quarkus pom.xml /build/
+USER root
+RUN microdnf install findutils
+COPY --chown=quarkus:quarkus gradlew /code/gradlew
+COPY --chown=quarkus:quarkus gradle /code/gradle
+COPY --chown=quarkus:quarkus build.gradle /code/
+COPY --chown=quarkus:quarkus settings.gradle /code/
+COPY --chown=quarkus:quarkus gradle.properties /code/
 USER quarkus
-RUN ./mvnw -B org.apache.maven.plugins:maven-dependency-plugin:3.1.2:go-offline
-COPY --chown=quarkus:quarkus ./src /build/src
-
-RUN ./mvnw package -DskipTests -Dnative -Dquarkus.profile=dev
+WORKDIR /code
+COPY src /code/src
+RUN ./gradlew buildDev -Dquarkus.package.type=native
 
 
 #Stage 2 => run
