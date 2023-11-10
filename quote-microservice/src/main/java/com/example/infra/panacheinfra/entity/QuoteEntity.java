@@ -1,4 +1,4 @@
-package com.example.panacheinfra.entity;
+package com.example.infra.panacheinfra.entity;
 
 
 import jakarta.persistence.Entity;

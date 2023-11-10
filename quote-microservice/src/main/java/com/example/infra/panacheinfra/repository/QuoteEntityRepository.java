@@ -1,4 +1,4 @@
-package com.example.panacheinfra.repository;
+package com.example.infra.panacheinfra.repository;
 
 import com.example.infra.panacheinfra.entity.QuoteEntity;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;

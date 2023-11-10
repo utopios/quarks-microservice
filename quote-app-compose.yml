@@ -5,6 +5,7 @@ services:
     build: 
       context: ./demo-authormicroservice
       dockerfile: Dockerfile.native
+    #image: localhost/microservice-quarkus-authoremicroservice
     container_name: authorservice
     # healthcheck:
     #   test: curl -f http://localhost/health || exit 1
@@ -16,6 +17,7 @@ services:
     build: 
       context: ./quote-microservice
       dockerfile: Dockerfile.native
+    #image: localhost/microservice-quarkus-quotemicroservice
     container_name: quoteservice
     ports:
       - "8082:8080"
@@ -29,7 +31,9 @@ services:
     build: 
       context: ./demo-quotecompositionservice
       dockerfile: Dockerfile.native
+    #image: localhost/microservice-quarkus-apicompositionmicroservice
     container_name: quotecompositionservice
+    
     # healthcheck:
     #   test: curl -f http://localhost:8081/health/ready || exit 1
     ports:

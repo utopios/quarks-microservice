@@ -1,4 +1,4 @@
-package com.example.panacheinfra;
+package com.example.infra.panacheinfra;
 
 import com.example.domain.entity.Quote;
 import com.example.domain.port.QuoteRepository;
