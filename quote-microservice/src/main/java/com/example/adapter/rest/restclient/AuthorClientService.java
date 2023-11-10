@@ -1,4 +1,4 @@
-package com.example.rest.restclient;
+package com.example.adapter.rest.restclient;
 
 import com.example.adapter.rest.dto.AuthorDTO;
 import jakarta.ws.rs.GET;

@@ -1,4 +1,4 @@
-package com.example.rest.resource;
+package com.example.adapter.rest.resource;
 
 
 import com.example.adapter.rest.dto.QuoteDTO;

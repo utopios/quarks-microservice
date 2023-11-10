@@ -1,4 +1,4 @@
-package com.example.rest.dto;
+package com.example.adapter.rest.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
