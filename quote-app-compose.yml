@@ -6,6 +6,8 @@ services:
       context: ./demo-authormicroservice
       dockerfile: Dockerfile.native
     container_name: authorservice
+    healthcheck:
+      test: curl -f http://localhost/health || exit 1
     ports:
       - "8081:8081"
    
@@ -34,9 +36,10 @@ services:
       AUTHOR_SERVICE: http://authoremicroservice:8081
       QUOTE_SERVICE: http://quotemicroservice:8080
     depends_on:
-      - quotemicroservice
-      - authoremicroservice
-      
+      quotemicroservice:
+        condition: service_healty
+      authoremicroservice:
+        condition: service_healty
     
 
   
