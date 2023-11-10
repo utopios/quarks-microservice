@@ -6,9 +6,11 @@ import com.example.adapter.rest.restclient.AuthorClientService;
 import com.example.domain.QuoteService;
 import com.example.domain.entity.Quote;
 import com.example.domain.port.QuoteRepository;
+import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 @Path("/api/v1/quote")
 @Produces(MediaType.APPLICATION_JSON)
@@ -19,12 +21,14 @@ public class QuoteResource {
     private final QuoteRepository quoteRepository;
     private final QuoteService quoteService;
 
-    private final AuthorClientService authorClientService;
+    @RestClient
+    @Inject
+    private AuthorClientService authorClientService;
 
-    public QuoteResource(QuoteRepository quoteRepository, AuthorClientService authorClientService) {
+    public QuoteResource(QuoteRepository quoteRepository/* ,AuthorClientService authorClientService*/) {
         this.quoteRepository = quoteRepository;
         quoteService = new QuoteService(quoteRepository);
-        this.authorClientService = authorClientService;
+        //this.authorClientService = authorClientService;
     }
 
     @POST
