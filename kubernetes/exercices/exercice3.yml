@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: advanced-deployment
+spec:
+  replicas: 3
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      name: myapp
+  template:
+    metadata:
+      name: myapp
+      labels:
+        name: myapp
+    spec:
+      containers:
+      - name: advanced-deployment-container
+        image: httpd:2.4.48
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+        ports:
+          - containerPort: 80

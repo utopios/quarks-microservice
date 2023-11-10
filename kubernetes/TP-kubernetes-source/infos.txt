@@ -1,0 +1,22 @@
+-postgres : 
+    -l'utilisateur => postgres, le mot de passe => postgres
+    -le service qui renvoie vers postgres doit s'appeler db
+    - image postgres:9.4
+        
+        - variables env:
+            POSTGRES_USER => postgres
+            POSTGRES_PASSWORD => postgres
+    - port: 5432
+
+-redis:
+    - le service qui renvoie vers redis doit d'appeler redis.
+    - port: 6379
+Etapes:
+    0 - Recréer un cluster kind avec le bon mapping des ports.
+    1 - Créer les images local, envoie des images dans le cluster.
+    2 - Créer le namespace .
+    3 - Créer les services.
+    4 - Créer les déploiements.
+
+
+

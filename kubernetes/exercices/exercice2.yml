@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: frontend-replicaset
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: frontend
+  template:
+    metadata:
+      name: frontend
+      labels:
+        name: frontend
+    spec:
+      containers:
+      - name: frontend-container
+        image: nginx:1.17.6
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+        ports:
+          - containerPort: 80

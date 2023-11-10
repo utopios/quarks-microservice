@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-with-service
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    #type: Recreate
+  selector:
+    matchLabels:
+      app: nginx-app
+  template:
+    metadata:
+      name: myapp
+      labels:
+        app: nginx-app
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx:latest
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+        ports:
+          - containerPort: 80
+          - containerPort: 443

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: limit-env-dev
+  namespace: dev
+spec:
+  hard:
+    pods: "100"
+    limits.cpu: "2"
+    limits.memory: "1Gi"
+    

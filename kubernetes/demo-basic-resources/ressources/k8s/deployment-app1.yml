@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-app1
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      name: app1
+  template:
+    metadata:
+      name: app1
+      labels:
+        name: app1
+    spec:
+      containers:
+      - name: demo-app1
+        image: demo-app1
+        imagePullPolicy: Never
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+        ports:
+          - containerPort: 3000
+        env:
+          - name: SERVICE_B_URL
+            #value: "http://serviceapp2.default.svc.cluster.local:3001"
+            value: "http://serviceapp2:3001"

@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-app2
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      name: app2
+  template:
+    metadata:
+      name: app2
+      labels:
+        name: app2
+    spec:
+      containers:
+      - name: demo-app2
+        image: demo-app2
+        imagePullPolicy: Never
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+        ports:
+          - containerPort: 3001
