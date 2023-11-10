@@ -1,0 +1,36 @@
+version: "3"
+services:
+
+  authoremicroservice:
+    build: ./demo-authormicroservice/Dockerfile.native
+    container_name: authorservice
+    ports:
+      - "8081:8081"
+   
+
+  quotemicroservice:
+    build: ./demo-quoteservice/Dockerfile.native
+    container_name: quoteservice
+    ports:
+      - "8082:8080"
+    environment:
+      AUTHOR_SERVICE: http://authoremicroservice:8081
+
+    depends_on:
+      - authoremicroservice
+
+  apicompositionmicroservice:
+    build: ./demo-quotecompositionservice/Dockerfile.native
+    container_name: quotecompositionservice
+    ports:
+      - "8080:8082"
+    environment:
+      AUTHOR_SERVICE: http://authoremicroservice:8081
+      QUOTE_SERVICE: http://quotemicroservice:8080
+    depends_on:
+      - quotemicroservice
+      - authoremicroservice
+      
+    
+
+  
