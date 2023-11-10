@@ -14,7 +14,7 @@ services:
 
   quotemicroservice:
     build: 
-      context: ./demo-quoteservice
+      context: ./quote-microservice
       dockerfile: Dockerfile.native
     container_name: quoteservice
     ports:
