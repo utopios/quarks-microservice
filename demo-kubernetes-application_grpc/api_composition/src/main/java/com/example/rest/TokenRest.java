@@ -31,4 +31,19 @@ public class TokenRest {
 
     }
 
+    @GET
+    @Path("extend")
+    @Produces(MediaType.APPLICATION_JSON)
+    @PermitAll
+    public Response extendToken (String token) {
+        Set<Role> roles = Collections.singleton(Role.ADMIN);
+
+            try {
+                return Response.ok(TokenUtils.generateToken("toto", roles,duration, issuer)).build();
+            } catch (Exception e) {
+                return Response.ok(e.getMessage()).build();
+            }
+
+    }
+
 }
