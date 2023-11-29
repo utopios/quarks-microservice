@@ -1,5 +1,5 @@
 # Stage 1 => build
-FROM quay.io/quarkus/ubi-quarkus-mandrel-builder-image:jdk-17 AS build
+FROM --platform=linux/amd64 quay.io/quarkus/ubi-quarkus-mandrel-builder-image:jdk-17 AS build
 WORKDIR /build
 COPY --chown=quarkus:quarkus .mvn /build/.mvn
 COPY --chown=quarkus:quarkus mvnw /build/mvnw
