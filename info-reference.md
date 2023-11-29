@@ -17,3 +17,13 @@ docker run <options> <image_name>
 ```bash
 docker run -d -p 8080:8080 --name containername imagename
 ```
+## Commande k8s
+
+kubectl get pods 
+kubectl get deployment
+kubectl get services
+
+
+## Commande k8s autoscale deployment
+
+kubectl autoscale deployment <deployment_name> --min=3 --max=6
