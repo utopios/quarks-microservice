@@ -27,3 +27,8 @@ kubectl get services
 ## Commande k8s autoscale deployment
 
 kubectl autoscale deployment <deployment_name> --min=3 --max=6
+
+
+## Commande création d'une extension quarkus
+
+mvn io.quarkus.platform:quarkus-maven-plugin:3.6.0:create-extension -DgroupId=com.example -DextensionId=custom-extestion -DwithoutTests

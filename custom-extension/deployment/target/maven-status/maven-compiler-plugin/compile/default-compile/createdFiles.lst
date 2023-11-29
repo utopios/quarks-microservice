@@ -1,0 +1,4 @@
+com/example/custom/extension/deployment/CustomExtensionProcessor.class
+com/example/custom/extension/deployment/CustomExtensionProcessor$$accessor.class
+META-INF/quarkus-javadoc.properties
+META-INF/quarkus-build-steps.list

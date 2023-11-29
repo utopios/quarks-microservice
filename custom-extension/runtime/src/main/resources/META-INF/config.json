@@ -1,0 +1,17 @@
+[
+  {
+    "name": "org.apache.logging.log4j.core.async.AsyncLoggerConfigDisruptor",
+    "methods": [
+      {
+        "name": "stop",
+        "parameterTypes": ["long", "java.util.concurrent.TimeUnit"]
+      }
+    ],
+    "queryAllDeclaredConstructors" : true,
+    "queryAllPublicConstructors" : true,
+    "queryAllDeclaredMethods" : true,
+    "queryAllPublicMethods" : true,
+    "allDeclaredClasses" : true,
+    "allPublicClasses" : true
+  }
+]
